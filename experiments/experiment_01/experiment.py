@@ -23,7 +23,7 @@ from sklearn.metrics import classification_report
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.svm import OneClassSVM
 
-from qiskit import BasicAer
+from qiskit import Aer
 from qiskit.circuit.library import ZZFeatureMap
 from qiskit.utils import algorithm_globals, QuantumInstance
 from qiskit_machine_learning.kernels import FidelityQuantumKernel
@@ -78,7 +78,7 @@ def build_quantum_kernel(feature_dimension: int, reps: int = 2) -> FidelityQuant
     """
 
     feature_map = ZZFeatureMap(feature_dimension=feature_dimension, reps=reps)
-    backend = BasicAer.get_backend("statevector_simulator")
+    backend = Aer.get_backend("aer_simulator")
     quantum_instance = QuantumInstance(backend=backend, shots=1)
     return FidelityQuantumKernel(feature_map=feature_map, quantum_instance=quantum_instance)
 
